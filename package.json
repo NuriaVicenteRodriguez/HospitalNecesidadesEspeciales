@@ -1,0 +1,19 @@
+{
+  "name": "hospitalnecesidadesespeciales",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  },
+  "dependencies": {
+    "caniuse-lite": "^1.0.30001726",
+    "server.js": "^1.0.0"
+  }
+}
