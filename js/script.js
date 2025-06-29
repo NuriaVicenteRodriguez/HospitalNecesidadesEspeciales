@@ -64,8 +64,47 @@ document.addEventListener('DOMContentLoaded', () => {
         { text: 'TENGO MIEDO', icon: '😨', bgColor: 'bg-pictogram-purple', textColor: 'text-pictogram-purple-text' },
     ];
 
+    // Nuevo array para el segundo panel de pictogramas (basado en foto 2)
+    const pictograms2 = [
+        // Fila 1
+        { text: 'QUIERO BEBER', icon: '🥤', bgColor: 'bg-cyan-500', textColor: 'text-white' },
+        { text: 'QUIERO ANDAR', icon: '🚶‍♂️', bgColor: 'bg-lime-500', textColor: 'text-white' },
+        { text: 'SILENCIO', icon: '🤫', bgColor: 'bg-gray-500', textColor: 'text-white' },
+        { text: 'NO PUEDO TRAGAR', icon: '🚫', bgColor: 'bg-red-500', textColor: 'text-white' },
+        { text: 'DOLOR', icon: '😖', bgColor: 'bg-red-700', textColor: 'text-white' },
+        { text: 'FRONTAL', icon: '👤', bgColor: 'bg-yellow-300', textColor: 'text-black' }, // Silueta de persona
+        { text: 'ESPALDA', icon: '🔙', bgColor: 'bg-blue-300', textColor: 'text-black' }, // Flecha hacia atrás (menos representativo pero universal)
+        // Fila 2
+        { text: 'QUIERO COMER', icon: '🍽️', bgColor: 'bg-cyan-500', textColor: 'text-white' },
+        { text: 'QUIERO SENTARME', icon: '🪑', bgColor: 'bg-lime-500', textColor: 'text-white' },
+        { text: 'QUIERO DORMIR', icon: '😴', bgColor: 'bg-gray-500', textColor: 'text-white' },
+        { text: 'NO PUEDO RESPIRAR', icon: '😮‍💨', bgColor: 'bg-red-500', textColor: 'text-white' },
+        { text: 'PICOR', icon: ' itchy', bgColor: 'bg-red-700', textColor: 'text-white' },
+        { text: '¿QUÉ HORA ES?', icon: '🕒', bgColor: 'bg-red-500', textColor: 'text-pictogram-red-text' },
+        { text: 'DÍA', icon: '☀️', bgColor: 'bg-pictogram-green', textColor: 'text-pictogram-green-text' },
+
+        // Fila 3
+        { text: 'QUIERO ORINAR', icon: '🚽', bgColor: 'bg-cyan-500', textColor: 'text-white' },
+        { text: 'QUIERO INCORPORARME', icon: '🛏️', bgColor: 'bg-lime-500', textColor: 'text-white' },
+        { text: 'NO PUEDO DORMIR', icon: ' insomnia', bgColor: 'bg-gray-500', textColor: 'text-white' },
+        { text: 'ME MAREO', icon: '😵', bgColor: 'bg-red-500', textColor: 'text-white' },
+        { text: 'TENGO FRÍO', icon: '🥶', bgColor: 'bg-blue-500', textColor: 'text-white' },
+        { text: 'TENGO CALOR', icon: '🥵', bgColor: 'bg-orange-500', textColor: 'text-white' },
+        { text: 'ME ENCUENTRO MEJOR', icon: '😃', bgColor: 'bg-pictogram-green', textColor: 'text-pictogram-green-text' },
+
+        // Fila 4
+        { text: 'QUIERO HACER CACA', icon: '💩', bgColor: 'bg-cyan-500', textColor: 'text-white' },
+        { text: 'CAMBIAR DE POSICIÓN', icon: '🔄', bgColor: 'bg-lime-500', textColor: 'text-white' },
+        { text: 'QUIERO ACOSTARM', icon: '🛌', bgColor: 'bg-gray-500', textColor: 'text-white' },
+        { text: 'QUIERO VOMITAR', icon: '🤢', bgColor: 'bg-red-500', textColor: 'text-white' },
+        { text: 'FIEBRE', icon: '🌡️', bgColor: 'bg-red-700', textColor: 'text-white' },
+        { text: 'QUIERO MIS GAFAS', icon: '👓', bgColor: 'bg-blue-500', textColor: 'text-black' },
+        { text: 'QUIERO MI AUDÍFONO', icon: '👂', bgColor: 'bg-orange-500', textColor: 'text-black' },
+    ];
+
     const communicationPanel = document.getElementById('communication-panel');
     const alphaNumPanel = document.getElementById('alpha-num-panel');
+    const communicationPanel2 = document.getElementById('communication-panel-2'); // Referencia al nuevo panel
 
     // Función para renderizar el panel de letras y números
     function renderAlphaNumPanel() {
@@ -89,7 +128,8 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (item.type === 'num') {
                 div.classList.add('bg-panel-yellow-bright', 'text-gray-800', 'hover:bg-panel-yellow-dark');
             } else if (item.type === 'special') {
-                div.classList.add('bg-panel-cyan', 'text-white', 'hover:bg-panel-cyan-dark', 'col-span-2'); // Ampliado para abarcar 2 columnas
+                // Si alphaNumPanel es grid-cols-8, entonces col-span-4 para ocupar la mitad de la fila
+                div.classList.add('bg-panel-cyan', 'text-white', 'hover:bg-panel-cyan-dark', 'col-span-4'); 
             }
             div.textContent = item.value;
             div.addEventListener('click', () => {
@@ -99,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Función para renderizar el panel de pictogramas
+    // Función para renderizar el primer panel de pictogramas
     function renderCommunicationPanel() {
         if (!communicationPanel) {
             console.error("Element with ID 'communication-panel' not found.");
@@ -128,7 +168,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Llamar a las funciones para renderizar ambos paneles al cargar la página
+    // NUEVA FUNCIÓN para renderizar el SEGUNDO panel de pictogramas
+    function renderCommunicationPanel2() {
+        if (!communicationPanel2) {
+            console.error("Element with ID 'communication-panel-2' not found.");
+            return;
+        }
+        communicationPanel2.innerHTML = ''; // Limpiar panel antes de renderizar
+
+        pictograms2.forEach(p => { // Itera sobre el nuevo array de pictogramas
+            const card = document.createElement('div'); // Crea un nuevo div para cada pictograma
+            card.classList.add( // Añade clases de Tailwind para estilo
+                'flex', 'flex-col', 'items-center', 'justify-center', 'text-center',
+                'p-2', 'rounded-md', 'cursor-pointer', 'transition-all', 'duration-200',
+                'shadow-md', 'hover:scale-103', 'hover:shadow-lg',
+                p.bgColor, 
+                p.textColor
+            );
+            card.innerHTML = `
+                <div class="text-4xl md:text-5xl mb-1 icon">${p.icon}</div>
+                <div class="text-xs sm:text-sm font-semibold text">${p.text}</div>
+            `; // Inserta el icono y el texto
+            card.addEventListener('click', () => { // Añade un event listener para el clic
+                alert(`Necesidad/Sensación: ¡${p.text}!`); // Muestra un mensaje de alerta
+            });
+            communicationPanel2.appendChild(card); // Añade la tarjeta al segundo panel
+        });
+    }
+
+    // Llamar a las funciones para renderizar todos los paneles al cargar la página
     renderAlphaNumPanel();
     renderCommunicationPanel();
+    renderCommunicationPanel2(); // Llama a la nueva función para el segundo panel
 });

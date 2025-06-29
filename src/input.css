@@ -1,4 +1,26 @@
 /* src/input.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Añade esto para el comportamiento sticky.
+   Tailwind no tiene una clase 'sticky-top-0' por defecto si no está en el core,
+   pero 'sticky' y 'top-0' sí existen.
+   Lo importante es que el contenedor padre tenga un overflow-y-auto (scrollable).
+*/
+
+/* Asegúrate de que el contenedor principal de todo el scroll tenga una altura definida
+   y 'overflow-y-auto' para que 'sticky' funcione.
+   En tu HTML, 'main' o 'main-container' si es el que se scrollea.
+*/
+.sticky-alpha-num {
+    position: sticky;
+    top: 0; /* Se pegará a la parte superior cuando el scroll alcance el elemento */
+    /* Puedes añadir un z-index para asegurarte de que quede por encima de otros elementos */
+    z-index: 10;
+    /* Si quieres que el fondo se mantenga, añade un color de fondo aquí
+       o usa una clase de Tailwind como bg-white en el HTML.
+    */
+    background-color: white; /* O el color de fondo de tu panel */
+}
