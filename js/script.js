@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { text: 'A VECES', icon: '🔄', bgColor: 'bg-pictogram-red', textColor: 'text-pictogram-red-text' },
         { text: '¿CUÁNDO?', icon: '⏰', bgColor: 'bg-pictogram-red', textColor: 'text-pictogram-red-text' },
         { text: '¿QUÉ HORA ES?', icon: '🕒', bgColor: 'bg-pictogram-red', textColor: 'text-pictogram-red-text' },
-        { text: 'DÍA', icon: '☀️', bgColor: 'bg-pictogram-green', textColor: 'text-pictogram-green-text' },
+        { text: 'DÍA  /  NOCHE', icon: '☀️ /🌙', bgColor: 'bg-pictogram-green', textColor: 'text-pictogram-green-text' },
         { text: 'NOCHE', icon: '🌙', bgColor: 'bg-pictogram-green', textColor: 'text-pictogram-green-text' },
 
         // Fila 2: Necesidades de higiene y vestir (Azul claro en la imagen)
