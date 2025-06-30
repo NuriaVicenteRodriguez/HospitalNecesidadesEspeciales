@@ -1,0 +1,3 @@
+supabase login
+
+mwD3Fmv3OaNtngWq

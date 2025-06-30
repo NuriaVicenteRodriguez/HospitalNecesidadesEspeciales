@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { type: 'num', value: '0' }, { type: 'num', value: '1' }, { type: 'num', value: '2' }, { type: 'num', value: '3' }, { type: 'num', value: '4' },
         { type: 'num', value: '5' }, { type: 'num', value: '6' }, { type: 'num', value: '7' }, { type: 'num', value: '8' }, { type: 'num', value: '9' }, { type: 'num', value: '10' },
         // Especiales
-        { type: 'special', value: 'ENFERMERA' }, { type: 'special', value: 'MÉDICO/A' }
+        { type: 'special', value: 'ENFERMERA', icon: '👩‍⚕️' }, { type: 'special', value: 'MÉDICO/A', icon: '👨‍⚕️' }
     ];
 
     const pictograms = [
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { text: 'A VECES', icon: '🔄', bgColor: 'bg-pictogram-red', textColor: 'text-pictogram-red-text' },
         { text: '¿CUÁNDO?', icon: '⏰', bgColor: 'bg-pictogram-red', textColor: 'text-pictogram-red-text' },
         { text: '¿QUÉ HORA ES?', icon: '🕒', bgColor: 'bg-pictogram-red', textColor: 'text-pictogram-red-text' },
-        { text: 'DÍA  /  NOCHE', icon: '☀️ /🌙', bgColor: 'bg-pictogram-green', textColor: 'text-pictogram-green-text' },
+        { text: 'DÍA', icon: '☀️', bgColor: 'bg-pictogram-green', textColor: 'text-pictogram-green-text' },
         { text: 'NOCHE', icon: '🌙', bgColor: 'bg-pictogram-green', textColor: 'text-pictogram-green-text' },
 
         // Fila 2: Necesidades de higiene y vestir (Azul claro en la imagen)
@@ -72,16 +72,17 @@ document.addEventListener('DOMContentLoaded', () => {
         { text: 'SILENCIO', icon: '🤫', bgColor: 'bg-gray-500', textColor: 'text-white' },
         { text: 'NO PUEDO TRAGAR', icon: '🚫', bgColor: 'bg-red-500', textColor: 'text-white' },
         { text: 'DOLOR', icon: '😖', bgColor: 'bg-red-700', textColor: 'text-white' },
-        { text: 'FRONTAL', icon: '👤', bgColor: 'bg-yellow-300', textColor: 'text-black' }, // Silueta de persona
-        { text: 'ESPALDA', icon: '🔙', bgColor: 'bg-blue-300', textColor: 'text-black' }, // Flecha hacia atrás (menos representativo pero universal)
+        { text: 'FRONTAL', icon: '🧍‍♀️', bgColor: 'bg-yellow-300', textColor: 'text-black' }, 
+        { text: 'ESPALDA', icon: '🧍‍♂️', bgColor: 'bg-blue-300', textColor: 'text-black' }, 
+
         // Fila 2
         { text: 'QUIERO COMER', icon: '🍽️', bgColor: 'bg-cyan-500', textColor: 'text-white' },
         { text: 'QUIERO SENTARME', icon: '🪑', bgColor: 'bg-lime-500', textColor: 'text-white' },
         { text: 'QUIERO DORMIR', icon: '😴', bgColor: 'bg-gray-500', textColor: 'text-white' },
         { text: 'NO PUEDO RESPIRAR', icon: '😮‍💨', bgColor: 'bg-red-500', textColor: 'text-white' },
         { text: 'PICOR', icon: ' itchy', bgColor: 'bg-red-700', textColor: 'text-white' },
-        { text: '¿QUÉ HORA ES?', icon: '🕒', bgColor: 'bg-red-500', textColor: 'text-pictogram-red-text' },
-        { text: 'DÍA', icon: '☀️', bgColor: 'bg-pictogram-green', textColor: 'text-pictogram-green-text' },
+        { text: '¿QUÉ HORA ES?', icon: '🕒', bgColor: 'bg-red-500', textColor: 'text-pictogram-red-text' }, // Repetido del otro panel
+        { text: 'DÍA', icon: '☀️', bgColor: 'bg-pictogram-green', textColor: 'text-pictogram-green-text' }, // Repetido del otro panel
 
         // Fila 3
         { text: 'QUIERO ORINAR', icon: '🚽', bgColor: 'bg-cyan-500', textColor: 'text-white' },
@@ -90,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { text: 'ME MAREO', icon: '😵', bgColor: 'bg-red-500', textColor: 'text-white' },
         { text: 'TENGO FRÍO', icon: '🥶', bgColor: 'bg-blue-500', textColor: 'text-white' },
         { text: 'TENGO CALOR', icon: '🥵', bgColor: 'bg-orange-500', textColor: 'text-white' },
-        { text: 'ME ENCUENTRO MEJOR', icon: '😃', bgColor: 'bg-pictogram-green', textColor: 'text-pictogram-green-text' },
+        { text: 'ME ENCUENTRO MEJOR', icon: '😃', bgColor: 'bg-pictogram-green', textColor: 'text-pictogram-green-text' }, // Repetido
 
         // Fila 4
         { text: 'QUIERO HACER CACA', icon: '💩', bgColor: 'bg-cyan-500', textColor: 'text-white' },
@@ -112,23 +113,21 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Element with ID 'alpha-num-panel' not found.");
             return;
         }
-        alphaNumPanel.innerHTML = ''; // Limpiar panel antes de renderizar
+        alphaNumPanel.innerHTML = ''; 
 
         alphaNumItems.forEach(item => {
             const div = document.createElement('div');
-            // Clases base para todos los items
             div.classList.add(
                 'flex', 'items-center', 'justify-center', 'font-bold', 'text-sm', 'md:text-base', 'p-1', 'rounded-sm', 'cursor-pointer',
                 'shadow-sm', 'transition-all', 'duration-150', 'hover:scale-105', 'hover:shadow-md'
             );
 
-            // Clases de color específicas según el tipo de elemento
             if (item.type === 'alpha') {
                 div.classList.add('bg-panel-blue-dark', 'text-white', 'hover:bg-panel-blue-light');
             } else if (item.type === 'num') {
                 div.classList.add('bg-panel-yellow-bright', 'text-gray-800', 'hover:bg-panel-yellow-dark');
             } else if (item.type === 'special') {
-                // Si alphaNumPanel es grid-cols-8, entonces col-span-4 para ocupar la mitad de la fila
+                // Ajustado a col-span-4 para cuadrícula de 8 columnas
                 div.classList.add('bg-panel-cyan', 'text-white', 'hover:bg-panel-cyan-dark', 'col-span-4'); 
             }
             div.textContent = item.value;
@@ -145,17 +144,16 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Element with ID 'communication-panel' not found.");
             return;
         }
-        communicationPanel.innerHTML = ''; // Limpiar panel antes de renderizar
+        communicationPanel.innerHTML = '';
 
         pictograms.forEach(p => {
             const card = document.createElement('div');
-            // Clases base para todos los pictogramas
             card.classList.add(
                 'flex', 'flex-col', 'items-center', 'justify-center', 'text-center',
                 'p-2', 'rounded-md', 'cursor-pointer', 'transition-all', 'duration-200',
-                'shadow-md', 'hover:scale-103', 'hover:shadow-lg',
-                p.bgColor, // Fondo personalizado de Tailwind
-                p.textColor // Texto personalizado de Tailwind
+                'shadow-md', 'hover:scale-103', 'hover:hover:shadow-lg',
+                p.bgColor, 
+                p.textColor
             );
             card.innerHTML = `
                 <div class="text-4xl md:text-5xl mb-1 icon">${p.icon}</div>
