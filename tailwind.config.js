@@ -1,3 +1,21 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        'header-blue': '#2A6F97', // <-- Añade tus colores personalizados
+        'text-panel-label-yellow': '#FFD700', // <-- Si usas este color
+        'alpha-num-bg': '#E0E0E0',
+        'border-alpha-num': '#A0A0A0'
+      },
+    },
+  },
+  plugins: [],
+}
 // tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 module.exports = {

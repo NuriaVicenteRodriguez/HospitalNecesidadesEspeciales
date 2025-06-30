@@ -1,19 +1,35 @@
 {
   "name": "hospitalnecesidadesespeciales",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Aplicación React para la comunicación asistida en hospital con autenticación de usuario.",
+  "main": "src/main.jsx",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "react",
+    "supabase",
+    "tailwind",
+    "hospital",
+    "comunicacion"
+  ],
+  "author": "Nuria",
   "license": "ISC",
   "devDependencies": {
-    "tailwindcss": "^3.4.1"
+    "@vitejs/plugin-react": "^4.6.0",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "vite": "^5.0.0"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.50.2",
     "caniuse-lite": "^1.0.30001726",
-    "server.js": "^1.0.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
